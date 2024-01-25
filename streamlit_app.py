@@ -16,5 +16,5 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 fruit_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index))
 fruits_to_show  = my_fruit_list.loc[fruit_selected]
 #DISPLAY TABLE
-show1 = streamlit.dataframe(fruit_selected)
-show1 = fruits_to_show 
+streamlit.dataframe(fruits_to_show)
+
