@@ -39,7 +39,6 @@ try:
         back_from_function = get_fruityvice_data (fruit_choice)
         streamlit.dataframe(back_from_function)
 
-
 #Hellow from snowflake/CONNECTOR
 streamlit.header("The fruit load list contais:")
 #Snowflake functions
