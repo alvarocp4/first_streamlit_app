@@ -22,6 +22,13 @@ fruits_to_show  = my_fruit_list.loc[fruit_selected]
 #DISPLAY TABLE
 streamlit.dataframe(fruits_to_show)
 
+#create a function
+def get_fruityvice_data (this_fruit_choice):
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    return fruityvice_normalized
+
+
 #New section display: f.fruitvyce
 streamlit.header("Fruityvice Fruit Advice!")
 try:
@@ -29,11 +36,8 @@ try:
   if not fruit_choice:
     streamlit.error("Please select a fruit to get information.")
   else:
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    streamlit.dataframe(fruityvice_normalized)
-except URLError as e:
-    streamlit.error()
+    back_from_function = get_fruityvice_data (fruit_choice)
+    streamlit.dataframe(back_from_function)
 
 #Hellow from snowflake/CONNECTOR
 streamlit.stop()
